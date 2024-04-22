@@ -376,10 +376,10 @@ MonoBehaviour:
   - {fileID: 860588988}
   - {fileID: 325935247}
   - {fileID: 1771472013}
-  waves: 0
+  waves: 3
   enemiesPerWave: 3
   timeToSpan: 0.7
-  timBetweenWaves: 0
+  timBetweenWaves: 2
 --- !u!1 &325935246
 GameObject:
   m_ObjectHideFlags: 0
@@ -15666,8 +15666,8 @@ Tilemap:
   - first: {x: -8, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -15676,8 +15676,8 @@ Tilemap:
   - first: {x: -7, y: -5, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -34855,7 +34855,7 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 3069
+  - m_RefCount: 3067
     m_Data: {fileID: 11400000, guid: e3d28fe9eaa897d48ade3df6d6050a9e, type: 2}
   - m_RefCount: 16
     m_Data: {fileID: 11400000, guid: 6666670ef6f70d54685a28339433293e, type: 2}
@@ -34863,7 +34863,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: d33f469fd29b36f4f84477b86526b84e, type: 2}
   - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: 46579b87d7654204e9a0b34b94e5f969, type: 2}
-  - m_RefCount: 9
+  - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: bd9e6e529740d3e4683ff67fb3c2c2f7, type: 2}
   - m_RefCount: 23
     m_Data: {fileID: 11400000, guid: 6c5f5565df6b3684c9b65dcfac7cd313, type: 2}
@@ -34872,7 +34872,7 @@ Tilemap:
   - m_RefCount: 10
     m_Data: {fileID: 11400000, guid: 45e8948cab20277489298a3793c1529c, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 3069
+  - m_RefCount: 3067
     m_Data: {fileID: -1851952702, guid: 303d9f6eafbcbcd409e1b864db60ec21, type: 3}
   - m_RefCount: 16
     m_Data: {fileID: 1184222060, guid: 303d9f6eafbcbcd409e1b864db60ec21, type: 3}
@@ -34880,7 +34880,7 @@ Tilemap:
     m_Data: {fileID: -773747994, guid: 303d9f6eafbcbcd409e1b864db60ec21, type: 3}
   - m_RefCount: 9
     m_Data: {fileID: -1885446102, guid: 303d9f6eafbcbcd409e1b864db60ec21, type: 3}
-  - m_RefCount: 9
+  - m_RefCount: 11
     m_Data: {fileID: -1084192855, guid: 303d9f6eafbcbcd409e1b864db60ec21, type: 3}
   - m_RefCount: 23
     m_Data: {fileID: -1107499231, guid: 303d9f6eafbcbcd409e1b864db60ec21, type: 3}
@@ -35107,6 +35107,7 @@ GameObject:
   - component: {fileID: 1549664521}
   - component: {fileID: 1549664522}
   - component: {fileID: 1549664523}
+  - component: {fileID: 1549664524}
   m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
@@ -35287,6 +35288,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.62425447, y: 0.30406928}
   m_EdgeRadius: 0
+--- !u!114 &1549664524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1549664517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bbbec642101c546933d865cce3816d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemie: {fileID: 5687229613093405420, guid: 7dcb4ba4c28c8824c9c4d7e7db9821a3, type: 3}
 --- !u!1 &1610206399
 GameObject:
   m_ObjectHideFlags: 0

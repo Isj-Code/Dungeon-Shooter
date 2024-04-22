@@ -21,11 +21,15 @@ public class AimAndShoot : MonoBehaviour
         // es decir el Aim se igual al del player pasado.
         transform.position = playerTransform.position;
 
-        // Transformamos las coordenadas del screenSpace a worldSpace
-        Aim();
+        if (GameManager.Instance.isPlayerDead == false)
+        {
+            // Transformamos las coordenadas del screenSpace a worldSpace
+            Aim();
 
-        // Instancia de flecha
-        Shoot();
+            // Instancia de flecha
+            Shoot();
+        }
+
 
     }
     private void Aim()
@@ -47,8 +51,8 @@ public class AimAndShoot : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-           GameObject arrow = Instantiate(arrowPrefab, shootPosition.position, transform.rotation);
-           arrow.GetComponent<Arrow>().Launch(direction); 
+            GameObject arrow = Instantiate(arrowPrefab, shootPosition.position, transform.rotation);
+            arrow.GetComponent<Arrow>().Launch(direction);
         }
     }
 

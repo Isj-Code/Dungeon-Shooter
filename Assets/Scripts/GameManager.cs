@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set;}
+    public bool IsPlayerDead { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
-        if(Instance != null && Instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
@@ -15,5 +16,19 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
+    }
+
+    public void Die()
+    {
+        // Parar el movimiento
+        EnemyMovement[] listOfEnemies = FindObjectsOfType<EnemyMovement>();
+        foreach (var enemy in listOfEnemies)
+        {
+            enemy.Stop();
+        }
+
+        // Parar el spawn de mobs
+        FindObjectOfType<Spawner>().StopAllCoroutines();
+        isPlayerDead = true;
     }
 }

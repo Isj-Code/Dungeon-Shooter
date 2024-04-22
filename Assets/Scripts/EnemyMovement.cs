@@ -39,4 +39,11 @@ public class EnemyMovement : MonoBehaviour
 
         transform.Translate(enemySpeed * Time.deltaTime * direction);
     }
+
+    public void Stop()
+    {
+        enemySpeed = 0f;
+    }
+
+
 }

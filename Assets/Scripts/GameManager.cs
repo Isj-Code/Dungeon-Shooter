@@ -1,10 +1,20 @@
 using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int lives;
+    [SerializeField] private TMP_Text liveText;
+    [SerializeField] private AudioClip dieAudioClip;
+
     public bool IsPlayerDead { get; private set; }
     public static GameManager Instance { get; private set; }
+    private float restartTime = 1.0f;
+
+    private int enemiesLeft;
+    private bool allWavesSpawned;
 
     private void Awake()
     {
@@ -15,7 +25,14 @@ public class GameManager : MonoBehaviour
         else
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        UpdateLiveText();
+        
+    }
+    private void UpdateLiveText()
+    {
+        liveText.text = $"Lives {lives}";
     }
 
     public void Die()
@@ -26,9 +43,57 @@ public class GameManager : MonoBehaviour
         {
             enemy.Stop();
         }
+        // Sonido de muerte
+        AudioManager.Instance.PlaySoundEffect(dieAudioClip, 1f);
 
         // Parar el spawn de mobs
         FindObjectOfType<Spawner>().StopAllCoroutines();
-        isPlayerDead = true;
+        IsPlayerDead = true;
+        lives--;
+        UpdateLiveText();
+        StartCoroutine(WaitAndRestart(restartTime));
+    }
+
+    private IEnumerator WaitAndRestart(float restartTime)
+    {
+        Reset();
+        yield return new WaitForSeconds(restartTime);
+        int indexScence = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(indexScence);
+
+    }
+
+    public void IncreaseEnemiesLeft()
+    {
+        enemiesLeft++;
+    }
+    public void DecreaseEnemiesLeft()
+    {
+        enemiesLeft--;
+        if( enemiesLeft == 0 && allWavesSpawned)
+        {
+            // Pasar de nivel
+            NextScene();
+        }
+    }
+
+    private void NextScene()
+    {
+        Reset();
+        int indexNextScence = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(indexNextScence);
+    }
+
+    public void AllWavesSpawned()
+    {
+        allWavesSpawned = true;
+        Debug.Log("Todos");
+    }
+
+    private void Reset()
+    {
+        enemiesLeft = 0;
+        IsPlayerDead= false;
+        allWavesSpawned = false;
     }
 }

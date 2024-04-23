@@ -7,6 +7,8 @@ public class Health : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private GameObject explosionPrefab;
     [SerializeField] private HealthBar healthBarEnemy;
+    [SerializeField] private AudioClip enemyTakeDamageClip;
+    [SerializeField] private AudioClip enemyDieClip;
 
     private int health;
     private SpriteRenderer spriteRenderer;
@@ -22,11 +24,22 @@ public class Health : MonoBehaviour
         
         if (health <= 0)
         {
+            // Animacion muerte
             Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject); 
+            // Sonido muerte enemigo
+            AudioManager.Instance.PlaySoundEffect(enemyDieClip, 1f);
+            // Eliminar objeto enemigo
+            Destroy(gameObject);
+            GameManager.Instance.DecreaseEnemiesLeft();
+
+
         }
         else
         {
+            // Sonido daño
+            AudioManager.Instance.PlaySoundEffect(enemyTakeDamageClip, 1f);
+
+            // Parpadeo rojo y barra vida
             StartCoroutine(Blink(0.3f));
             healthBarEnemy.UpdateHealthbar(maxHealth, health);
         }

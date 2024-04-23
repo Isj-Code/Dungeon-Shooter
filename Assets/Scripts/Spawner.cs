@@ -23,13 +23,15 @@ public class Spawner : MonoBehaviour
                 var index = Random.Range(0, listSpawns.Length);
                 yield return new WaitForSeconds(timeToSpan);
                 Instantiate(enemyPrefab, listSpawns[index].position, Quaternion.identity);
+                GameManager.Instance.IncreaseEnemiesLeft();
             }
-            yield return new WaitForSeconds(timBetweenWaves);
+            if( x < waves - 1)
+            {
+                // El paso de nivel, si estamos esperando no funcionaria
+                yield return new WaitForSeconds(timBetweenWaves);
+            }  
         }
 
-        if(enemyPrefab == null)
-        {
-            Debug.Log("bien");
-        }
+        GameManager.Instance.AllWavesSpawned();
     }
 }

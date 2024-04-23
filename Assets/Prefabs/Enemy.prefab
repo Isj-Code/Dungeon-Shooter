@@ -403,6 +403,8 @@ MonoBehaviour:
   maxHealth: 3
   explosionPrefab: {fileID: 770953049554507850, guid: 651eb623683b85945b4466fe3600c1e1, type: 3}
   healthBarEnemy: {fileID: 3421753684224500692}
+  enemyTakeDamageClip: {fileID: 8300000, guid: fed7fe26b831c824686bd1a800c95114, type: 3}
+  enemyDieClip: {fileID: 8300000, guid: 814ced28bb8cbc84ea6cefe88f8ae77e, type: 3}
 --- !u!1 &7756135675880650611
 GameObject:
   m_ObjectHideFlags: 0

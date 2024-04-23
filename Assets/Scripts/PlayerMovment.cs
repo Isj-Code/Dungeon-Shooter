@@ -17,12 +17,14 @@ public class PlayerMovment : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isPlayerDead == false)
+        if (GameManager.Instance.IsPlayerDead)
         {
-            ProcessInputs();
-            Flip();
-            animator.SetFloat("Speed", input.magnitude);
+            input = Vector2.zero;
+            return;
         }
+        ProcessInputs();
+        Flip();
+        animator.SetFloat("Speed", input.magnitude);
 
     }
 

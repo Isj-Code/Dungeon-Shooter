@@ -6,6 +6,7 @@ public class AimAndShoot : MonoBehaviour
     private Camera cam;
     private Vector2 mouseWorldPosition, direction;
 
+    [SerializeField] private AudioClip launchArrowClip;
     [SerializeField] private float aimSpeed;
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private Transform playerTransform, shootPosition;
@@ -21,7 +22,7 @@ public class AimAndShoot : MonoBehaviour
         // es decir el Aim se igual al del player pasado.
         transform.position = playerTransform.position;
 
-        if (GameManager.Instance.isPlayerDead == false)
+        if (GameManager.Instance.IsPlayerDead == false)
         {
             // Transformamos las coordenadas del screenSpace a worldSpace
             Aim();
@@ -53,7 +54,7 @@ public class AimAndShoot : MonoBehaviour
         {
             GameObject arrow = Instantiate(arrowPrefab, shootPosition.position, transform.rotation);
             arrow.GetComponent<Arrow>().Launch(direction);
+            AudioManager.Instance.PlaySoundEffect(launchArrowClip, 1f);
         }
     }
-
 }

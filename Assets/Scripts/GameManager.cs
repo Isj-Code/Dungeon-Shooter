@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         UpdateLiveText();
-        
+
     }
     private void UpdateLiveText()
     {
@@ -56,11 +56,21 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitAndRestart(float restartTime)
     {
-        Reset();
         yield return new WaitForSeconds(restartTime);
-        int indexScence = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(indexScence);
+        Reset();
 
+        if (lives > 0)
+        {
+            int indexScence = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(indexScence);
+        }
+        else
+        {
+            SceneManager.LoadScene(0);
+            // Aqui se destruye el GameManager y AudioManager para tener uno nuevo
+            Destroy(gameObject);
+            Destroy(AudioManager.Instance.gameObject);
+        }
     }
 
     public void IncreaseEnemiesLeft()
@@ -70,14 +80,14 @@ public class GameManager : MonoBehaviour
     public void DecreaseEnemiesLeft()
     {
         enemiesLeft--;
-        if( enemiesLeft == 0 && allWavesSpawned)
+        if (enemiesLeft == 0 && allWavesSpawned)
         {
             // Pasar de nivel
             NextScene();
         }
     }
 
-    private void NextScene()
+    public void NextScene()
     {
         Reset();
         int indexNextScence = SceneManager.GetActiveScene().buildIndex + 1;
@@ -93,7 +103,7 @@ public class GameManager : MonoBehaviour
     private void Reset()
     {
         enemiesLeft = 0;
-        IsPlayerDead= false;
+        IsPlayerDead = false;
         allWavesSpawned = false;
     }
 }
